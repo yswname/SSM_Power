@@ -1,8 +1,6 @@
-prompt PL/SQL Developer import file
-prompt Created on 2018Äê1ÔÂ31ÈÕ by Noble
-set feedback off
-set define off
-prompt Creating DM_USER...
+
+CREATE SEQUENCE seq_demo;
+
 create table DM_USER
 (
   UR_ID        INTEGER not null,
