@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.demo.mybatis.dao.IDmUserDAO">
+	<resultMap type="DmUser" id="DmUserMap">
+	   <id column="ur_id" property="urId"/>
+	   <result column="ur_user_name" property="urUserName"/>
+	   <result column="ur_password" property="urPassword"/>
+	   <result column="ur_age" property="urAge"/>
+	   
+	   <association property="dmIdCard"
+	                javaType="DmIdCard"
+	                column="ur_id"
+	                select="cn.com.demo.mybatis.dao.IDmIdCardDAO.findById"></association>
+	   <collection property="dmOrders"
+	               ofType="DmOrder"
+	               column="ur_id"
+	               select="cn.com.demo.mybatis.dao.IDmOrderDAO.findOrdersByUserId"
+	               ></collection>
+	   <collection property="dmRoles"
+	               ofType="DmRole"
+	               column="ur_id"
+	               select="cn.com.demo.mybatis.dao.IDmRoleDAO.findRolesByUserId"></collection>
+	</resultMap>
+	
+	<select id="findById" parameterType="int" resultMap="DmUserMap">
+	   select * from dm_user where ur_id=#{urId}
+	</select>
+	<select id="findUsersByRoleId" parameterType="int" resultMap="DmUserMap">
+	   select ur.* from dm_user ur inner join map_ur_rl mp on ur.ur_id=mp.mp_ur_id
+	    where mp.mp_rl_id=#{rlId}
+	</select>
+	<select id="findAll" resultMap="DmUserMap">
+	   select * from dm_user order by ur_id
+	</select>
+	<insert id="save" parameterType="DmUser" useGeneratedKeys="true" keyColumn="ur_id" keyProperty="urId">
+	   insert into dm_user (ur_id,ur_user_name,ur_age,ur_password)
+	               values (seq_demo.nextval,#{urUserName},#{urAge},#{urPassword})
+	</insert>
+</mapper>

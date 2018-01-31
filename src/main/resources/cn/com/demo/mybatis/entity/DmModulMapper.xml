@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.demo.mybatis.dao.IDmModulDAO">
+	<resultMap type="DmModul" id="DmModulMap">
+		<id column="md_id" property="mdId" />
+		<result column="md_name" property="mdName" />
+		<result column="md_remark" property="mdRemark" />
+
+		<!-- <collection property="dmPowerItems" resultMap="DmPowerItemMap"></collection> -->
+		<collection property="dmPowerItems" column="pi_id" ofType="DmPowerItem">
+			<id column="pi_id" property="piId" />
+			<result column="pi_name" property="piName" />
+			<result column="pi_url" property="piUrl" />
+			<result column="pi_remark" property="piRemark" />
+		</collection>
+		
+	</resultMap>
+	<resultMap type="DmPowerItem" id="DmPowerItemMap">
+		<id column="pi_id" property="piId" />
+		<result column="pi_name" property="piName" />
+		<result column="pi_url" property="piUrl" />
+		<result column="pi_remark" property="piRemark" />
+	</resultMap>
+
+	<insert id="add" parameterType="DmModul">
+		insert into dm_modul
+		(md_id,md_name,md_remark)
+		values(seq_demo.nextval,#{mdName},#{mdRemark})
+	</insert>
+	<insert id="addModul" parameterType="DmModul" useGeneratedKeys="true"
+		keyColumn="md_id" keyProperty="mdId">
+		insert into dm_modul
+		(md_id,md_name,md_remark)
+		values(seq_demo.nextval,#{mdName},#{mdRemark})
+	</insert>
+	<update id="update" parameterType="DmModul">
+		update dm_modul set
+		md_name=#{mdName},md_remark=#{mdRemark} where
+		md_id=#{mdId}
+	</update>
+	<select id="findAll" resultMap="DmModulMap">
+		select * from dm_modul order by
+		md_id
+	</select>
+	<select id="findAll2" resultMap="DmModulMap">
+		select md.*, it.* from dm_modul
+		md left outer join dm_power_item it
+		on md.md_id = it.pi_md_id
+		order by
+		md.md_id
+	</select>
+
+	<select id="findById" parameterType="int" resultMap="DmModulMap">
+		select *
+		from dm_modul where md_id=#{xx}
+	</select>
+</mapper>

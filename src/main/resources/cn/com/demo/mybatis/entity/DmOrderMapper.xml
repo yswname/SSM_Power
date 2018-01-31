@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.demo.mybatis.dao.IDmOrderDAO">
+	<resultMap type="DmOrder" id="DmOrderMap">
+	   <id column="od_id" property="odId"/>
+	   <result column="od_code" property="odCode"/>
+	   
+	   <association property="dmUser"
+	                javaType="DmUser"
+	                column="od_ur_id"
+	                select="cn.com.demo.mybatis.dao.IDmUserDAO.findById"></association>
+	</resultMap>
+	
+	<select id="findById" parameterType="int" resultMap="DmOrderMap">
+	   select * from dm_order where od_id=#{odId}
+	</select>
+	
+	<select id="findOrdersByUserId" parameterType="int" resultMap="DmOrderMap">
+	   select * from dm_order where od_ur_id=#{urId} order by od_id
+	</select>
+</mapper>

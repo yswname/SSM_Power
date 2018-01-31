@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.demo.mybatis.dao.IDmPowerItemDAO">
+	<resultMap type="DmPowerItem" id="DmPowerItemMap">
+		<id column="pi_id" property="piId" />
+		<result column="pi_name" property="piName" />
+		<result column="pi_url" property="piUrl" />
+		<result column="pi_remark" property="piRemark" />
+		
+		<association property="dmModul" javaType="DmModul">
+		   <id column="md_id" property="mdId"/>
+		   <result column="md_name" property="mdName" />
+		   <result column="md_remark" property="mdRemark" />
+		</association>
+		 
+	</resultMap>
+	
+	
+	<select id="findById" parameterType="int" resultMap="DmPowerItemMap" >
+	   select * from dm_power_item where pi_id=#{xx}
+	</select>
+	<select id="findById2" parameterType="int" resultMap="DmPowerItemMap" >
+	   select * from dm_power_item it inner join dm_modul md on it.pi_md_id=md.md_id where it.pi_id=#{xx}
+	</select>
+	<select id="findAll" resultMap="DmPowerItemMap">
+	   select * from dm_power_item order by pi_id
+	</select>
+</mapper>
