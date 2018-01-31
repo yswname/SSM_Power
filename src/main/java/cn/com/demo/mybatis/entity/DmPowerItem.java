@@ -1,5 +1,8 @@
 package cn.com.demo.mybatis.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.apache.ibatis.type.Alias;
 
 
@@ -16,7 +19,8 @@ public class DmPowerItem implements java.io.Serializable {
 	private String piName;
 	private String piUrl;
 	private String piRemark;
-
+    
+	private Set<DmRole> dmRoles = new HashSet<DmRole>();
 	// Constructors
 
 	/** default constructor */
@@ -39,6 +43,14 @@ public class DmPowerItem implements java.io.Serializable {
 	}
 
 	// Property accessors
+
+	public Set<DmRole> getDmRoles() {
+		return dmRoles;
+	}
+
+	public void setDmRoles(Set<DmRole> dmRoles) {
+		this.dmRoles = dmRoles;
+	}
 
 	public Integer getPiId() {
 		return this.piId;

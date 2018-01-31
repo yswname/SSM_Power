@@ -531,6 +531,14 @@ prompt Enabling triggers for DM_ROLE...
 alter table DM_ROLE enable all triggers;
 prompt Enabling triggers for MAP_UR_RL...
 alter table MAP_UR_RL enable all triggers;
-set feedback on
-set define on
+
+--添加角色同权限项的关系表
+CREATE TABLE map_rl_pi(
+   mp_rl_id INTEGER NOT NULL,
+   mp_pi_id INTEGER NOT NULL,
+   
+   CONSTRAINT pk_rl_pi PRIMARY KEY (mp_rl_id,mp_pi_id),
+   CONSTRAINT fk_mp_rl_id FOREIGN KEY (mp_rl_id) REFERENCES dm_role (rl_id),
+   CONSTRAINT fk_mp_pi_id FOREIGN KEY (mp_pi_id) REFERENCES dm_power_item (pi_id)
+);
 prompt Done.

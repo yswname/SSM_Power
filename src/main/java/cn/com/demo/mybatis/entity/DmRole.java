@@ -18,6 +18,7 @@ public class DmRole implements java.io.Serializable {
 	private String rlRemark;
 	private Set dmUsers = new HashSet(0);
 
+	private Set<DmPowerItem> dmPowerItems = new HashSet<DmPowerItem>(); 
 	// Constructors
 
 	/** default constructor */
@@ -40,6 +41,14 @@ public class DmRole implements java.io.Serializable {
 
 	public Integer getRlId() {
 		return this.rlId;
+	}
+
+	public Set<DmPowerItem> getDmPowerItems() {
+		return dmPowerItems;
+	}
+
+	public void setDmPowerItems(Set<DmPowerItem> dmPowerItems) {
+		this.dmPowerItems = dmPowerItems;
 	}
 
 	public void setRlId(Integer rlId) {

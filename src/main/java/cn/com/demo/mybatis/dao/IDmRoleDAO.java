@@ -13,7 +13,9 @@ public interface IDmRoleDAO {
     public void save(DmRole role);
     public void update(DmRole role);
     public void delete(DmRole role);
-    
+    /**
+     * 移除指定角色的所有权限项
+     * */
     public void removePowerItemsByRoleId(int rlId);
     /**
      * keys:
