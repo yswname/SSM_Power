@@ -5,6 +5,6 @@
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <property name="java-output-path" value="/StrutsHibernate Web App/target/classes"/>
-        <property name="context-root" value="/SSM_Anno"/>
+        <property name="context-root" value="SSM_Power"/>
     </wb-module>
 </project-modules>

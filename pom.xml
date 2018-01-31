@@ -152,6 +152,7 @@
 					<warName>${project.artifactId}</warName>
 					<webappDirectory>${project.build.directory}/${project.artifactId}</webappDirectory>
 					<warSourceDirectory>src/main/webapp</warSourceDirectory>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
 				</configuration>
 			</plugin>
 			<plugin>
