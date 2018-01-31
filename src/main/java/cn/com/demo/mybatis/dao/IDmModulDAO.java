@@ -10,6 +10,5 @@ public interface IDmModulDAO {
     public void update(DmModul modul);
     public void delete(DmModul modul);
     public List<DmModul> findAll();
-    public List<DmModul> findAll2();
     public DmModul findById(int id);
 }
