@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import cn.com.demo.mybatis.dao.IDmUserDAO;
+import cn.com.demo.mybatis.entity.DmRole;
 import cn.com.demo.mybatis.entity.DmUser;
 import cn.com.demo.service.IUserService;
 
@@ -30,4 +31,36 @@ public class UserServiceImpl implements IUserService {
 		this.userDAO.save(user);
 	}
 
+	@Override
+	public List<DmUser> searchUsers(String urName, String urUserName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public DmUser searchUserById(int urId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<DmRole> searchDeployedRoles(int urId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<DmRole> searchUndeployedRoles(int urId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void deployUserRoles(int urId, int[] rlIds) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+	
 }
