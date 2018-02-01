@@ -9,7 +9,13 @@ import cn.com.demo.mybatis.entity.DmRole;
 
 public interface IDmRoleDAO {
     public DmRole findById(int id);
-    public List<DmRole> findAll();
+    /**
+     * 根据条件查找角色列表
+     * keys:
+     *     rlName
+     *     rlRemark
+     * */
+    public List<DmRole> findAll(Map<String, String> map);
     public void save(DmRole role);
     public void update(DmRole role);
     public void delete(DmRole role);
