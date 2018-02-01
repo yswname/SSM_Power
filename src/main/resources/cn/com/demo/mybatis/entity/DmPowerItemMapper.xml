@@ -19,10 +19,16 @@
 	<select id="findById" parameterType="int" resultMap="DmPowerItemMap" >
 	   select * from dm_power_item where pi_id=#{xx}
 	</select>
-	<select id="findById2" parameterType="int" resultMap="DmPowerItemMap" >
-	   select * from dm_power_item it inner join dm_modul md on it.pi_md_id=md.md_id where it.pi_id=#{xx}
+	<select id="findPowerItems" parameterType="hashMap">
+		select * from dm_power_item 
+		<where>
+			<if test="mdId!=null"> and md_id =#{mdId}</if>
+			<if test="piName!=null">and pi_name=#{piName}</if>
+			<if test="piUrl!=null">and pi_url=#{piUrl}</if>
+			<if test="piRemark!=null">and pi_Remark=#{piRemark}</if>
+		</where>
 	</select>
 	<select id="findAll" resultMap="DmPowerItemMap">
-	   select * from dm_power_item order by pi_id
+		select * from dm_power_item
 	</select>
 </mapper>
