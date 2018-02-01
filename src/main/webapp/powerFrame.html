@@ -61,6 +61,18 @@
        		$("#right").html(msg);
        	});
        }
+       
+       //显示角色的分配权限项列表
+       function todeployRole(){
+       	var _data = "rlId=" + _id;
+           if(!_data || parseInt(_data)<=0){
+               alert("请选择要分配的角色");
+           }else{           
+               $.post('role/initDeployPowerItem', _data, function(result) {
+            	   $("#right").html(result);
+               });
+           }
+       }
     </script>
 </body>
 </html>
