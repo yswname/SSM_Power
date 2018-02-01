@@ -3,6 +3,7 @@ package cn.com.demo.mvc.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,7 @@ import cn.com.demo.service.IRoleService;
 @RequestMapping(value="/role")
 public class RoleController {
 	@Autowired
+	@Qualifier("roleService")
 	private IRoleService roleService;
 	
 	@RequestMapping(value="/initRole")
@@ -35,12 +37,15 @@ public class RoleController {
     }
     
     @ResponseBody// json
+    @RequestMapping(value="/searchRoleById")
     public DmRole searchRole(int rlId){
     	DmRole role = null;
     	role = this.roleService.searchRoleById(rlId);
     	return role;
     }
+    
     @ResponseBody// 提示信息
+    @RequestMapping(value="/addRole")
     public String addRole(DmRole role){
     	String result = "添加成功";
     	try {
@@ -51,7 +56,9 @@ public class RoleController {
 		}
     	return result;
     }
+    
     @ResponseBody// 提示信息
+    @RequestMapping(value="/editRole")
     public String editRole(DmRole role){
     	String result = "修改成功";
     	try {
@@ -62,7 +69,9 @@ public class RoleController {
 		}
     	return result;
     }
+    
     @ResponseBody// 提示信息
+    @RequestMapping(value="/deleteRole")
     public String deleteRole(DmRole role){
     	String result = "删除成功";
     	try {
