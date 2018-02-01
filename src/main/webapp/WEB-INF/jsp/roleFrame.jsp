@@ -2,7 +2,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <script type="text/javascript">
     function toSearch(){
-    	$.post('role/initRole',function(result){
+    	$.post('role/searchRoles',function(result){
     		$("#roleList").html(result);
     	});
     }
@@ -14,7 +14,7 @@
     }
     function toAdd(){
     	var _data = $("#RoleForm").serialize();
-    	alert(_data);
+    	
     	$.post("role/addRole",_data,function(msg){
     		alert(msg);
     		toSearch();
@@ -32,7 +32,7 @@
     }
     function toEdit(){
         var _data = $("#RoleForm").serialize();
-        $.post("role/updateRole",_data,function(msg){
+        $.post("role/editRole",_data,function(msg){
             toSearchByCondition();
             alert(message);
         },"html");

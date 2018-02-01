@@ -24,10 +24,10 @@
 		select * from dm_role 
 		<where>
 			<if test="rlName != null and rlName != '' ">
-				and rl_name=#{rlName}
+				and rl_name like '%${rlName}%'
 			</if>
 			<if test="rlRemark != null and rlRemark != '' ">
-				and rl_remark=#{rlRemark}
+				and rl_remark like '%${rlRemark}%'
 			</if>
 		</where>
 	</select>
