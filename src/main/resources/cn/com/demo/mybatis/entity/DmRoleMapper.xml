@@ -31,4 +31,16 @@
 			</if>
 		</where>
 	</select>
+	<insert id="save" parameterType="DmRole" useGeneratedKeys="true" keyColumn="rl_id" keyProperty="rlId">
+	   insert into dm_role (rl_id,rl_name,rl_remark)
+	               values (seq_demo.nextval,#{rlName},#{rlRemark})
+	</insert>
+	<update id="update" parameterType="DmRole" >
+		update dm_role set 
+		rl_name=#{rlName},rl_remark=#{rlRemark}
+		where rl_id=#{rlId}
+	</update>
+	<delete id="delete" parameterType="DmRole">
+		delete from dm_role where rl_id=#{rlId}
+	</delete>
 </mapper>
