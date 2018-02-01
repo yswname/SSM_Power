@@ -15,7 +15,10 @@ public interface IRoleService {
     // 包含权限项--》 调用 IPowerItemService.searchPowerItems方法
     public List<DmModul> searchAllModuls();
     public List<DmPowerItem> searchPowerItemsByRoleId(int rlId);
-    
-    public List<DmRole> searchAllRoles();
+    /**
+     * 通过传入的角色信息查询角色列表
+     * 将角色对象封装成map，再调用DAO中的方法
+     * */
+    public List<DmRole> searchRoles(DmRole role);
     public DmRole searchRoleById(int rlId);
 }

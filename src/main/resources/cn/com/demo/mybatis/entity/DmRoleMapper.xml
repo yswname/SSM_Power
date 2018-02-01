@@ -10,6 +10,7 @@
 	               ofType="DmUser"
 	               column="rl_id"
 	               select="cn.com.demo.mybatis.dao.IDmUserDAO.findUsersByRoleId"></collection>
+	               
 	</resultMap>
 	
 	<select id="findById" parameterType="int" resultMap="DmRoleMap">
@@ -18,5 +19,16 @@
 	<select id="findRolesByUserId" parameterType="int" resultMap="DmRoleMap">
 	   select rl.* from dm_role rl inner join map_ur_rl mp on rl.rl_id=mp.mp_rl_id
 	   where mp.mp_ur_id=#{urId}
+	</select>
+	<select id="findAll" parameterType="Map" resultMap="DmRoleMap">
+		select * from dm_role 
+		<where>
+			<if test="rlName != null and rlName != '' ">
+				and rl_name=#{rlName}
+			</if>
+			<if test="rlRemark != null and rlRemark != '' ">
+				and rl_remark=#{rlRemark}
+			</if>
+		</where>
 	</select>
 </mapper>
