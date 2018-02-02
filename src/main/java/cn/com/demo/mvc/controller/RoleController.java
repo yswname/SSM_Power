@@ -89,8 +89,11 @@ public class RoleController {
      * 包含有所有权限项的Modul List
      * 当前角色所拥有的权限项的集合
      * */
+   
+    @RequestMapping(value="/initDeployPowerItem")
     public String initDeployPowerItem(int rlId){
     	String result = "deployList";
+    	
     	return result;
     }
     

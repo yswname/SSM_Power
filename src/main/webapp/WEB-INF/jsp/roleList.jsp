@@ -24,7 +24,7 @@
                        ${index.index }
                       </div>
                       <div class="col-md-2">
-                          <input type="radio" name="rlId" onclick="toSearchRole(${_item.rlId})" value="${_item.rlId }"/>
+                          <input type="radio" name="rlId" id="rlId" onclick="toSearchRole(${_item.rlId})" value="${_item.rlId }"/>
                       </div>
                       <div class="col-md-9">
                         ${_item.rlName }

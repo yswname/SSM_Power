@@ -70,15 +70,20 @@
        
        //显示角色的分配权限项列表
        function todeployRole(){
+    
+    	  var _id = $("#rlId").val();
        	var _data = "rlId=" + _id;
-           if(!_data || parseInt(_data)<=0){
+  
+           if(_id==0){
                alert("请选择要分配的角色");
            }else{           
                $.post('role/initDeployPowerItem', _data, function(result) {
+            	   alert(11);
             	   $("#right").html(result);
                });
            }
        }
+       
     </script>
 </body>
 </html>

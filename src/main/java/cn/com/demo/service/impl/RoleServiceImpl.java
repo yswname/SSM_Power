@@ -86,7 +86,11 @@ public class RoleServiceImpl implements IRoleService {
 	@Transactional(readOnly=true)
 	public DmRole searchRoleById(int rlId) {
 		DmRole role = this.roleDAO.findById(rlId);
-		return role;
+		DmRole roleTemp = new DmRole();
+		roleTemp.setRlId(role.getRlId());
+		roleTemp.setRlName(role.getRlName());
+		roleTemp.setRlRemark(role.getRlRemark());
+		return roleTemp;
 	}
 
 }
