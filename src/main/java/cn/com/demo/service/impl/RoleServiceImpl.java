@@ -36,6 +36,8 @@ public class RoleServiceImpl implements IRoleService {
 	@Override
 	@Transactional(propagation=Propagation.REQUIRED)
 	public void deleteRole(DmRole role) {
+		this.roleDAO.deleteFromRoleAndItem(role);
+		this.roleDAO.deleteFromRoleAndUser(role);
 		this.roleDAO.delete(role);
 	}
 

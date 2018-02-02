@@ -42,8 +42,15 @@
 		rl_name=#{rlName},rl_remark=#{rlRemark}
 		where rl_id=#{rlId}
 	</update>
+	
 	<delete id="delete" parameterType="DmRole">
 		delete from dm_role where rl_id=#{rlId}
+	</delete>
+	<delete id="deleteFromRoleAndUser" parameterType="DmRole">
+		delete from map_ur_rl where mp_rl_id=#{rlId}
+	</delete>
+	<delete id="deleteFromRoleAndItem" parameterType="DmRole">
+		delete from map_rl_pi where mp_rl_id=#{rlId}
 	</delete>
 	
 	<select id="findPowerItemsByRoleId" parameterType="int" resultMap="DmRoleMap">
