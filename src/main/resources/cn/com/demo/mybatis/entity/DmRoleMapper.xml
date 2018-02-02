@@ -9,9 +9,9 @@
 	   <collection property="dmUsers"
 	               ofType="DmUser"
 	               column="rl_id"
-	               select="cn.com.demo.mybatis.dao.IDmUserDAO.findUsersByRoleId"></collection>
-	               
+	               select="cn.com.demo.mybatis.dao.IDmUserDAO.findUsersByRoleId"></collection>                       
 	</resultMap>
+	
 	
 	<select id="findById" parameterType="int" resultMap="DmRoleMap">
 	   select * from dm_role where rl_id=#{rlId}
@@ -20,6 +20,8 @@
 	   select rl.* from dm_role rl inner join map_ur_rl mp on rl.rl_id=mp.mp_rl_id
 	   where mp.mp_ur_id=#{urId}
 	</select>
+
+
 	<select id="findAll" parameterType="Map" resultMap="DmRoleMap">
 		select * from dm_role 
 		<where>
@@ -40,7 +42,19 @@
 		rl_name=#{rlName},rl_remark=#{rlRemark}
 		where rl_id=#{rlId}
 	</update>
+	
 	<delete id="delete" parameterType="DmRole">
 		delete from dm_role where rl_id=#{rlId}
 	</delete>
+	<delete id="deleteFromRoleAndUser" parameterType="DmRole">
+		delete from map_ur_rl where mp_rl_id=#{rlId}
+	</delete>
+	<delete id="deleteFromRoleAndItem" parameterType="DmRole">
+		delete from map_rl_pi where mp_rl_id=#{rlId}
+	</delete>
+	
+	<select id="findPowerItemsByRoleId" parameterType="int" resultMap="DmRoleMap">
+		select pi.* from dm_power_item pi left outer join map_rl_pi mp on pi.pi_id=mp.mp_pi_id where mp.mp_rl_id=#{rlId}
+	</select>
 </mapper>
+

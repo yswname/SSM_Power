@@ -28,8 +28,13 @@
        <div id="left" class="col-md-2">
        <ul class="nav nav-pills nav-stacked">
           <li role="presentation" class="active"><a href="javascript:toView('power/initPowerItem')">管理权限项</a></li>
+
+
+          <li role="presentation"><a href="javascript:toView('power/initDeployUserRoleFrame')">分配角色</a></li>
+
           <li role="presentation"><a href="javascript:toRoleView('role/initRole')">管理角色</a></li>
-          <li role="presentation"><a href="javascript:toView('power/deployRoleAction!initUserList.action')">分配角色</a></li>
+
+
         </ul>
        </div>
        
@@ -63,7 +68,7 @@
        }
        function toViewUserRole(_id){
        	var _data = "urId="+_id;
-       	$.post("power/deployRoleAction!initDeployRole.action",_data,function(msg){
+       	$.post("power/initDeployRole",_data,function(msg){
        		$("#right").html(msg);
        	});
        }

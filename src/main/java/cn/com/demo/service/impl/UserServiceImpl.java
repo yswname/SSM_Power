@@ -1,6 +1,8 @@
 package cn.com.demo.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -33,32 +35,46 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public List<DmUser> searchUsers(String urName, String urUserName) {
-		// TODO Auto-generated method stub
-		return null;
+	
+		Map<String,String> map = new HashMap<String,String>();
+		map.put("urUserName", "%"+urUserName+"%");
+		map.put("urName", "%"+urName+"%");
+		List<DmUser> userList = this.userDAO.findUsers(map);
+		return userList;
 	}
 
 	@Override
 	public DmUser searchUserById(int urId) {
-		// TODO Auto-generated method stub
-		return null;
+		DmUser user = this.userDAO.findById(urId);
+		return user;
 	}
 
 	@Override
 	public List<DmRole> searchDeployedRoles(int urId) {
-		// TODO Auto-generated method stub
-		return null;
+		List<DmRole> roleList = this.userDAO.findDeployedRoles(urId);
+		return roleList;
 	}
 
 	@Override
 	public List<DmRole> searchUndeployedRoles(int urId) {
-		// TODO Auto-generated method stub
-		return null;
+		List<DmRole> roleList = this.userDAO.findUndeployedRoles(urId);
+		return roleList;
 	}
 
 	@Override
 	public void deployUserRoles(int urId, int[] rlIds) {
-		// TODO Auto-generated method stub
-		
+		//移除该id的用户的所有角色
+		this.userDAO.removeUserRoles(urId);
+		//赋予该id新角色
+		Map<String,Integer> map = null;
+		if(rlIds != null){
+			for (int i = 0; i < rlIds.length; i++) {
+				map = new HashMap<String,Integer>();
+				map.put("mapUrId", urId);
+				map.put("mapRlId", rlIds[i]);
+				this.userDAO.addUserRole(map);
+			}	
+		}
 	}
 
 	

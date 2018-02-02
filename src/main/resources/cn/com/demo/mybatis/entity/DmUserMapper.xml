@@ -20,7 +20,9 @@
 	               ofType="DmRole"
 	               column="ur_id"
 	               select="cn.com.demo.mybatis.dao.IDmRoleDAO.findRolesByUserId"></collection>
+	               
 	</resultMap>
+	
 	
 	<select id="findById" parameterType="int" resultMap="DmUserMap">
 	   select * from dm_user where ur_id=#{urId}
@@ -36,4 +38,40 @@
 	   insert into dm_user (ur_id,ur_user_name,ur_age,ur_password)
 	               values (seq_demo.nextval,#{urUserName},#{urAge},#{urPassword})
 	</insert>
+	
+	<delete id="removeUserRoles" parameterType="int">
+		delete from map_ur_rl where mp_ur_id=#{urId}
+	</delete>
+	
+	<insert id="addUserRole" parameterType="hashMap">
+		insert into map_ur_rl(mp_ur_id,mp_rl_id) values(#{mapUrId},#{mapRlId})
+	</insert>
+	
+	<select id="findUsers" parameterType="hashMap"  resultMap="DmUserMap">
+		select * from dm_user 
+		
+		<where>
+			<if test="urUserName!=null and urUserName != ''">
+				 ur_user_name like #{urUserName}
+			</if>	
+		</where>
+		
+	</select>
+	
+	<!--查询指定用户id的所有角色  -->
+	<select id="findDeployedRoles" parameterType="int" resultMap="cn.com.demo.mybatis.dao.IDmRoleDAO.DmRoleMap">
+		select rl.* from dm_user ur 
+		inner join map_ur_rl mp on ur.ur_id=mp.mp_ur_id 
+		inner join dm_role rl on rl.rl_id=mp.mp_rl_id where ur.ur_id=#{urId}
+	</select>
+	<!--查询指定用户id没有分配的角色  -->
+	<select id="findUndeployedRoles" parameterType="int" resultMap="cn.com.demo.mybatis.dao.IDmRoleDAO.DmRoleMap">
+		select rl1.* from dm_role rl1 where rl1.rl_id not in 
+		(select rl.rl_id from dm_user ur 
+		inner join map_ur_rl mp on ur.ur_id=mp.mp_ur_id 
+        inner join dm_role rl on rl.rl_id=mp.mp_rl_id 
+        where ur.ur_id=#{urId})
+	</select>
+	
+	
 </mapper>

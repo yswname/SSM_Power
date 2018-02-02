@@ -19,6 +19,10 @@ public interface IDmRoleDAO {
     public void save(DmRole role);
     public void update(DmRole role);
     public void delete(DmRole role);
+    //删除指定角色和用户的中间表的记录
+    public void deleteFromRoleAndUser(DmRole role);
+    //删除指定角色和权限项的中间表的记录
+    public void deleteFromRoleAndItem(DmRole role);
     /**
      * 移除指定角色的所有权限项
      * */
