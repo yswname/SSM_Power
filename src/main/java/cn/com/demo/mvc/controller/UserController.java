@@ -50,7 +50,6 @@ public class UserController {
 	 * */
 	@RequestMapping("/initDeployRole")
 	public String initDeployRole(int urId,ModelMap model){
-		System.out.println("*********");
 		DmUser user = this.userService.searchUserById(urId);
 		model.addAttribute("user", user);
 		List<DmRole> deployedRoles = this.userService.searchDeployedRoles(urId);
