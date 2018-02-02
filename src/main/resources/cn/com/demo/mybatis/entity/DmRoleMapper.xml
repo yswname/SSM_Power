@@ -20,6 +20,8 @@
 	   select rl.* from dm_role rl inner join map_ur_rl mp on rl.rl_id=mp.mp_rl_id
 	   where mp.mp_ur_id=#{urId}
 	</select>
+
+
 	<select id="findAll" parameterType="Map" resultMap="DmRoleMap">
 		select * from dm_role 
 		<where>
@@ -48,3 +50,4 @@
 		select pi.* from dm_power_item pi left outer join map_rl_pi mp on pi.pi_id=mp.mp_pi_id where mp.mp_rl_id=#{rlId}
 	</select>
 </mapper>
+
