@@ -19,4 +19,5 @@
 	   select rl.* from dm_role rl inner join map_ur_rl mp on rl.rl_id=mp.mp_rl_id
 	   where mp.mp_ur_id=#{urId}
 	</select>
+	
 </mapper>
