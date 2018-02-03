@@ -2,6 +2,8 @@ package cn.com.demo.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import cn.com.demo.mybatis.entity.DmModul;
 import cn.com.demo.mybatis.entity.DmPowerItem;
 
