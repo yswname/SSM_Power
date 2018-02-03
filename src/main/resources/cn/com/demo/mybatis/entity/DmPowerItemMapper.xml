@@ -38,7 +38,7 @@
 	<select id="addPowerItem" parameterType="DmPowerItem">
 		insert into dm_power_item values(seq_dm.nextval,#{piName},#{piUrl},#{piRemark})
 	</select>
-	<update id="updatePowerItem" parameterMap="DmPowerItemMap">
+	<update id="updatePowerItem" parameterType="DmPowerItem">
 		update dm_power_item
 		<set>
 			<if test="piName != null">
@@ -52,7 +52,7 @@
 			</if>
 		</set>
 	</update>
-	<delete id="deletePowerItem" parameterMap="DmPowerItemMap">
+	<delete id="deletePowerItem" parameterType="DmPowerItem">
 		delete from dm_power_item where pi_id=#{piId}
 	</delete>	
 </mapper>
