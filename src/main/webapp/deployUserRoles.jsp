@@ -50,8 +50,6 @@
             doubleHeaderValue="--- Please Select ---" 
             doubleEmptyOption="true"
             doubleMultiple="true" />
-            
-            
             </form>
          </div>
          
