@@ -20,7 +20,7 @@ import cn.com.demo.service.IPowerItemService;
 @RequestMapping(value="/power")
 public class PowerItemController {
 	@Autowired
-	@Qualifier("IPowerItemService")
+	@Qualifier("powerItemService")
 	private IPowerItemService powerItemService;
 	/**
 	 * 获取所有的modul集合，返回到powerItemFrame.jsp
