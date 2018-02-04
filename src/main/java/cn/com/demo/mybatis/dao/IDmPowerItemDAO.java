@@ -2,7 +2,6 @@ package cn.com.demo.mybatis.dao;
 
 import java.util.List;
 import java.util.Map;
-
 import cn.com.demo.mybatis.entity.DmPowerItem;
 
 public interface IDmPowerItemDAO {
